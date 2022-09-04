@@ -1,5 +1,9 @@
 library(waveslim)
 
+is.nan.data.frame <- function(x) {
+    do.call(cbind, lapply(x, is.nan))
+}
+
 extract <- function(data, level) {
     # Extract the wavelet coefficients at a given level
     # data: the data to be processed
@@ -8,43 +12,48 @@ extract <- function(data, level) {
     stations <- unique(data$IAGA)
     wf <- "la8"
     boundary <- "reflection"
-    N <- 1439
+    N <- 1440
     levels <- floor(log(N, 2))
-    
+    data_wavelet <- list()
     for (station in stations) {
-        single_data <- data[data$IAGA == station,]
+        single_data <- data[data$IAGA == station, ]
         single_data <- single_data[, 5]
-        print(single_data)
+        single_data[is.nan(single_data)] <- 0
         data_wavelet.wt <- modwt(single_data, wf = wf, n.levels = levels, boundary = boundary)
         data_wavelet_mra <- mra.wt(data_wavelet.wt)
-        data_wavelet[station] <- data_wavelet_mra[[level]]
+
+        data_wavelet[[station]] <- data_wavelet_mra[[level]]
     }
+    return(data_wavelet)
 }
 
 write_to_csv <- function(data, file_name, level) {
-    content <- data.frame(Station = c("VIC"), Wavelet = c("dBN"), Level = c(level), Data = data)
+    if (file.exists(file_name)) {
+        file.remove(file_name)
+    }
+    col_names <- TRUE
+    station <- names(data)[1]
+    content <- data.frame(Station = c(station), Wavelet = c("dBN"), Level = c(level), Data = data[[station]])
+    for (station in names(data)[-1]) {
+        content <- rbind(content, data.frame(Station = c(station), Wavelet = c("dBN"), Level = c(level), Data = data[[station]]))
+    }
     write.csv(content, file_name, row.names = FALSE)
 }
 
 read_data <- function(file_name, argument) {
     data <- read.csv(file_name, header = TRUE, sep = ",", fill = TRUE, comment.char = "")
-    data <- switch(argument,
-        "dbn_nez" = data[, c("Date_UTC", "IAGA", "GEOLON", "GEOLAT", "dbn_nez")],
-        "bou_nez" = data$bou_nez
-    )
-    return(data)
+    columns <- c("Date_UTC", "IAGA", "GEOLON", "GEOLAT", argument)
+    return(data[, columns])
 }
 
 process_data <- function(input, output, argument, level) {
     data <- read_data(input, argument)
-    data_wavelet_mra <- extract(data, level)
-    write_to_csv(data_wavelet_mra, output, level)
+    data_wavelet <- extract(data, level)
+    write_to_csv(data_wavelet, output, level)
 }
 
 
 
-process_data("D:/Personal/Coding/Space Weather/20031029-supermag.csv", "VIC_dbn.csv", "dbn_nez", 1)
-# process_data("D:/Personal/Coding/Space Weather/test.csv", "6_station_dbn.csv", "dbn_nez", 1)
 
 
 
@@ -62,3 +71,7 @@ process_data("D:/Personal/Coding/Space Weather/20031029-supermag.csv", "VIC_dbn.
 
 
 # BOU, NEW, BSL, FRD, FRN, TUC
+
+# process_data("20031029-supermag.csv", "VIC_dbn.csv", "dbn_nez", 1)
+process_data("20031029-supermag-6-stations.csv", "6_station_dbn.csv", "dbn_nez", 1)
+print("all Done")

@@ -23,7 +23,9 @@ VIC_csvdata_1029 <- read.csv("D:/Personal/Coding/Space Weather/20031029-supermag
 
 VIC_wavelet_tmp <- VIC_csvdata_1029$dbn_nez
 VIC_wavelet.wt <- modwt(VIC_wavelet_tmp, wf = wf, n.levels = levels, boundary = boundary)
+
 VIC_wavelet_mra_1029dbn <- mra.wt(VIC_wavelet.wt)
+
 for (j in 1:levels) {
     plot(VIC_wavelet_mra_1029dbn[[j]], type = "l", , xlab = "", ylab = "nT")
     axis(side = 2)
