@@ -16,7 +16,6 @@ toDataFrame <- function(station, time, data) {
 extract <- function(data) {
     # Extract the wavelet coefficients at a given level
     # data: the data to be processed
-    # level: the level of the wavelet coefficients to be extracted
     # return: the wavelet coefficients at the given level
     stations <- unique(data$IAGA)
     wf <- "la8"
@@ -77,4 +76,7 @@ process_data <- function(input, output, argument) {
 # process_data("20031029-supermag.csv", "VIC_dbn.csv", "dbn_nez", 1)
 process_data("20031029-supermag-6-stations.csv", "6_station_dbn.csv", "dbn_nez")
 
-print("all Done")
+print("All done")
+
+# ! https://www.geeksforgeeks.org/program-distance-two-points-earth/
+#* needed for distance calculation in matlab
