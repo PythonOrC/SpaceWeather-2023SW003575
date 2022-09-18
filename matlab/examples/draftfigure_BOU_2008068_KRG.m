@@ -2,75 +2,75 @@ i=112000;
 latTUC =  32.17; lonTUC =   -110.73;   
 % OBStion Id: TUC
 % Location: Tucson, AZ
-% Latitude: 32.17°N
-% Longitude: 110.73°W
+% Latitude: 32.17ï¿½N
+% Longitude: 110.73ï¿½W
 latFRN = 37.09; lonFRN = -119.72;
 % Station Id: FRN
 % Location: O'Neals, CA
-% Latitude: 37.09°N
-% Longitude: 119.72°W
+% Latitude: 37.09ï¿½N
+% Longitude: 119.72ï¿½W
 latBOU = 40.14; lonBOU = -105.24;
 % Station Id: BOU
 % Location: Boulder, CO
-% Latitude: 40.14°N
-% Longitude: 105.24°W
+% Latitude: 40.14ï¿½N
+% Longitude: 105.24ï¿½W
 latNEW = 48.27; lonNEW = -117.12;
 % Station Id: NEWmaps
 % Location: Colville National Forest, WA
-% Latitude: 48.27°N
-% Longitude: 117.12°W
+% Latitude: 48.27ï¿½N
+% Longitude: 117.12ï¿½W
 latFRD = 38.20; lonFRD = -77.37;
 % Station Id: FRD
 % Location: Corbin, VA
-% Latitude: 38.20°N
-% Longitude: 77.37°W
+% Latitude: 38.20ï¿½N
+% Longitude: 77.37ï¿½W
 latBSL = 30.35; lonBSL = -89.63;
 % Station Id: BSL
 % Location: NASA Stennis Space Center, MS
-% Latitude: 30.35°N
-% Longitude: 89.63°W
+% Latitude: 30.35ï¿½N
+% Longitude: 89.63ï¿½W
 latSJG = 18.11; lonSJG = -66.15;
 % Station Id: SJG
 % Location: Cayey, PR
-% Latitude: 18.11°N
-% Longitude: 66.15°W
+% Latitude: 18.11ï¿½N
+% Longitude: 66.15ï¿½W
 latHON = 21.32; lonHON = -158.00;
 % Station Id: HON
 % Location: Ewa Beach, HI
-% Latitude: 21.32°N
-% Longitude: 158.00°W
+% Latitude: 21.32ï¿½N
+% Longitude: 158.00ï¿½W
 latSIT = 57.06; lonSIT = -135.33;
 % Station Id: SIT
 % Location: Sitka, AK
-% Latitude: 57.06°N
-% Longitude: 135.33°W
+% Latitude: 57.06ï¿½N
+% Longitude: 135.33ï¿½W
 latSHU = 55.35; lonSHU = -160.46;
 % Station Id: SHU
 % Location: Sand Point, Popof, AK
-% Latitude: 55.35°N
-% Longitude: 160.46°W
+% Latitude: 55.35ï¿½N
+% Longitude: 160.46ï¿½W
 latGUA = 13.59; lonGUA = 35.13;
 %latGUA = 13.59; lonGUA = -215.13;
 % Station Id: GUA
 % Location: Dededo, Guam
-% Latitude: 13.59°N
-% Longitude: 215.13°W=35.13°E
+% Latitude: 13.59ï¿½N
+% Longitude: 215.13ï¿½W=35.13ï¿½E
 latBRW = 71.32; lonBRW = -156.62;
 % Station Id: BRW
 % Location: Point Barrow, AK
-% Latitude: 71.32°N
-% Longitude: 156.62°W
+% Latitude: 71.32ï¿½N
+% Longitude: 156.62ï¿½W
 latCMO = 64.87; lonCMO = -147.86;
 % Station Id: CMO
 % Location: Fairbanks, AK
-% Latitude: 64.8741°N
-% Longitude: 147.8597°W
+% Latitude: 64.8741ï¿½N
+% Longitude: 147.8597ï¿½W
 
 % latDED = 70.36; lonDED = -148.79;
 % Station Id: DED
 % Location: Deadhorse, AK
-% Latitude: 70.36°N
-% Longitude: 148.79°W
+% Latitude: 70.36ï¿½N
+% Longitude: 148.79ï¿½W
 
 %Geometry (in this case 'Point') 
 %Lat (for points, this is a scalar double)
