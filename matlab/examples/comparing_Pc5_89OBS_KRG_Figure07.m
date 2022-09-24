@@ -2,6 +2,9 @@ T1=172800; T2=345600; interval1=120;
 
 %Interpolating Scattered Data Using griddata and griddatan
 
+% * used to compare with or without a observatory, used to test how accurate the KRG is.
+
+
 % build Observitories location
 % Begin with a small set of point data, approximate latitudes and longitudes
 latTUC =  32.17; lonTUC =   -110.73;   

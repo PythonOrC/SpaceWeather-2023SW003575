@@ -1,4 +1,4 @@
-i=1; % * which second to generate frame
+time=1; % * which second to generate frame
 latTUC =  32.17; lonTUC =   -110.73;   
 % OBStion Id: TUC
 % Location: Tucson, AZ
@@ -78,25 +78,43 @@ latCMO = 64.87; lonCMO = -147.86;
 
 filename = "6_station_dbn_abridged.csv";
 delimiter = ",";
-dat = readtable(filename, 'Delimiter', delimiter);
-dat = table2array(dat);
-print(dat);
+dat = readtable("6_station_dbn_abridged.csv", "Delimiter",delimiter, "DatetimeType","datetime");
+meta = readtable("supermag-6-stations.csv", "Delimiter",delimiter, "DatetimeType","datetime");
+[Lat, IA, IC] = unique(meta.GEOLAT);
+[Lon, IA, IC] = unique(meta.GEOLON);
+[Stations,IA,IC] = unique(dat.Station);
+
+data = {};
+for i = 1:length(Stations)
+    display(string(S{i}));
+    index = dat.Station == string(Stations{i});
+    datS = dat(index,:);
+    data = [data, datS{:,7}];
+end
+disp(Lats);
+disp(Lons);
+
 
 
 
 
 clear OBS;
 [OBS(1:12).Geometry] = deal('Point');
-OBS(1).Lat = latTUC; OBS(1).Lon = lonTUC; OBS(1).Name = 'TUC';
-OBS(2).Lat = latFRN; OBS(2).Lon = lonFRN; OBS(2).Name = 'FRN';
-OBS(3).Lat = latBOU; OBS(3).Lon = lonBOU; OBS(3).Name = 'BOU';
-OBS(4).Lat = latNEW; OBS(4).Lon = lonNEW; OBS(4).Name = 'NEW';
-OBS(5).Lat = latFRD; OBS(5).Lon = lonFRD; OBS(5).Name = 'FRD';
-OBS(6).Lat = latBSL; OBS(6).Lon = lonBSL; OBS(6).Name = 'BSL';
+for i = 1:length(Lats)
+    OBS(i).Lat = Lats(i);
+    OBS(i).Lon = Lons(i);
+    OBS(i).Name = string(Stations(i));
+end
+% OBS(1).Lat = latTUC; OBS(1).Lon = lonTUC; OBS(1).Name = 'TUC';
+% OBS(2).Lat = latFRN; OBS(2).Lon = lonFRN; OBS(2).Name = 'FRN';
+% OBS(3).Lat = latBOU; OBS(3).Lon = lonBOU; OBS(3).Name = 'BOU';
+% OBS(4).Lat = latNEW; OBS(4).Lon = lonNEW; OBS(4).Name = 'NEW';
+% OBS(5).Lat = latFRD; OBS(5).Lon = lonFRD; OBS(5).Name = 'FRD';
+% OBS(6).Lat = latBSL; OBS(6).Lon = lonBSL; OBS(6).Name = 'BSL';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-lat=[latTUC latFRN latBOU latNEW latFRD latBSL latSJG latHON latSIT];
-long=[lonTUC lonFRN lonBOU lonNEW lonFRD lonBSL lonSJG lonHON lonSIT];
+% lat=[latTUC latFRN latBOU latNEW latFRD latBSL latSJG latHON latSIT];
+% long=[lonTUC lonFRN lonBOU lonNEW lonFRD lonBSL lonSJG lonHON lonSIT];
 pc5=[atucBH(8,i)+atucBH(9,i) afrnBH(8,i)+afrnBH(9,i) abouBH(8,i)+abouBH(9,i)...
     anewBH(8,i)+anewBH(9,i) afrdBH(8,i)+afrdBH(9,i) abslBH(8,i)+abslBH(9,i) asjgBH(8,i)+asjgBH(9,i)...
     ahonBH(8,i)+ahonBH(9,i) asitBH(8,i)+asitBH(9,i)]'; % * wavlet level 
