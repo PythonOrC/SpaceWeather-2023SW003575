@@ -5,94 +5,94 @@
 % New stations
 latFCC = 90-31.241; lonFCC = 265.912-360;
 % Station (ID):FCC
-% Co-latitude: 31.241°
-% Longitude:265.912°
+% Co-latitude: 31.241?
+% Longitude:265.912?
 latMEA = 90-35.384; lonMEA = 246.653-360;
-% Co-latitude:35.384°
-% Longitude:246.653°
+% Co-latitude:35.384?
+% Longitude:246.653?
 latOTT = 90-44.597; lonOTT = 284.448-360;
-% Co-latitude:44.597°
-% Longitude:284.448°
+% Co-latitude:44.597?
+% Longitude:284.448?
 latSTJ = 90-42.405; lonSTJ = 307.323-360;
-% Co-latitude:42.405°
-% Longitude:307.323°
+% Co-latitude:42.405?
+% Longitude:307.323?
 latVIC = 90-41.480; lonVIC = 236.580-360;
-% Co-latitude:41.480°
-% Longitude:236.580°
+% Co-latitude:41.480?
+% Longitude:236.580?
 % build Observitories location
 % Begin with a small set of point data, approximate latitudes and longitudes
 latTUC =  32.17; lonTUC =   -110.73;   
 % Station Id: TUC
 % Location: Tucson, AZ
-% Latitude: 32.17°N
-% Longitude: 110.73°W
+% Latitude: 32.17?N
+% Longitude: 110.73?W
 latFRN = 37.09; lonFRN = -119.72;
 % Station Id: FRN
 % Location: O'Neals, CA
-% Latitude: 37.09°N
-% Longitude: 119.72°W
+% Latitude: 37.09?N
+% Longitude: 119.72?W
 latBOU = 40.14; lonBOU = -105.24;
 % Station Id: BOU
 % Location: Boulder, CO
-% Latitude: 40.14°N
-% Longitude: 105.24°W
+% Latitude: 40.14?N
+% Longitude: 105.24?W
 latNEW = 48.27; lonNEW = -117.12;
 % Station Id: NEWmaps
 % Location: Colville National Forest, WA
-% Latitude: 48.27°N
-% Longitude: 117.12°W
+% Latitude: 48.27?N
+% Longitude: 117.12?W
 latFRD = 38.20; lonFRD = -77.37;
 % Station Id: FRD
 % Location: Corbin, VA
-% Latitude: 38.20°N
-% Longitude: 77.37°W
+% Latitude: 38.20?N
+% Longitude: 77.37?W
 latBSL = 30.35; lonBSL = -89.63;
 % Station Id: BSL
 % Location: NASA Stennis Space Center, MS
-% Latitude: 30.35°N
-% Longitude: 89.63°W
+% Latitude: 30.35?N
+% Longitude: 89.63?W
 latSJG = 18.11; lonSJG = -66.15;
 % Station Id: SJG
 % Location: Cayey, PR
-% Latitude: 18.11°N
-% Longitude: 66.15°W
+% Latitude: 18.11?N
+% Longitude: 66.15?W
 latHON = 21.32; lonHON = -158.00;
 % Station Id: HON
 % Location: Ewa Beach, HI
-% Latitude: 21.32°N
-% Longitude: 158.00°W
+% Latitude: 21.32?N
+% Longitude: 158.00?W
 latSIT = 57.06; lonSIT = -135.33;
 % Station Id: SIT
 % Location: Sitka, AK
-% Latitude: 57.06°N
-% Longitude: 135.33°W
+% Latitude: 57.06?N
+% Longitude: 135.33?W
 latSHU = 55.35; lonSHU = -160.46;
 % Station Id: SHU
 % Location: Sand Point, Popof, AK
-% Latitude: 55.35°N
-% Longitude: 160.46°W
+% Latitude: 55.35?N
+% Longitude: 160.46?W
 latGUA = 13.59; lonGUA = 35.13;
 %latGUA = 13.59; lonGUA = -215.13;
 % Station Id: GUA
 % Location: Dededo, Guam
-% Latitude: 13.59°N
-% Longitude: 215.13°W=35.13°E
+% Latitude: 13.59?N
+% Longitude: 215.13?W=35.13?E
 latBRW = 71.32; lonBRW = -156.62;
 % Station Id: BRW
 % Location: Point Barrow, AK
-% Latitude: 71.32°N
-% Longitude: 156.62°W
+% Latitude: 71.32?N
+% Longitude: 156.62?W
 latCMO = 64.87; lonCMO = -147.86;
 % Station Id: CMO
 % Location: Fairbanks, AK
-% Latitude: 64.8741°N
-% Longitude: 147.8597°W
+% Latitude: 64.8741?N
+% Longitude: 147.8597?W
 
 % latDED = 70.36; lonDED = -148.79;
 % Station Id: DED
 % Location: Deadhorse, AK
-% Latitude: 70.36°N
-% Longitude: 148.79°W
+% Latitude: 70.36?N
+% Longitude: 148.79?W
 
 %Geometry (in this case 'Point') 
 %Lat (for points, this is a scalar double)

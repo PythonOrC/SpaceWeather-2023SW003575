@@ -94,23 +94,22 @@ lat=[latTUC latFRN latBOU latNEW latFRD latBSL latSJG latHON latSIT];
 long=[lonTUC lonFRN lonBOU lonNEW lonFRD lonBSL lonSJG lonHON lonSIT];
 pc5=[atucBH(8,i)+atucBH(9,i) afrnBH(8,i)+afrnBH(9,i) abouBH(8,i)+abouBH(9,i)...
     anewBH(8,i)+anewBH(9,i) afrdBH(8,i)+afrdBH(9,i) abslBH(8,i)+abslBH(9,i) asjgBH(8,i)+asjgBH(9,i)...
-    ahonBH(8,i)+ahonBH(9,i) asitBH(8,i)+asitBH(9,i)]'; 
+    ahonBH(8,i)+ahonBH(9,i) asitBH(8,i)+asitBH(9,i)]'; % * wavlet level 
 %Use meshgrid to create a set of 2-D grid points in the longitude-latitude plane and then use griddata to interpolate the corresponding depth at those points:
-[longi,lati] = meshgrid(-127:0.5:-66, 25:0.5:50);
-%%%%%%% KRG !!!!!
+[longi,lati] = meshgrid(-127:0.5:-66, 25:0.5:50); % * 0.5 is the resolution, longitude then latitude
 v = variogram([long' lat'],pc5);
 [dum,dum,dum,vstruct] = variogramfit(v.distance,v.val,[],[],[],'model','stable');
 close;
 [pc5i,pc5Vari] = krigingtest(vstruct,long',lat',pc5,longi,lati);
 
 % plot USA map with province
-s = shaperead('physio_Dissolve_province.shp');
-figure('Color','w');
-mapshow(s);
+s = shaperead('physio_Dissolve_province.shp'); % * any .shp file would do 
+figure('Color','w'); 
+mapshow(s);  % * draw the map
 
 % PUT OBS ON THE MAP
 mapshow(OBS(1:6),'Marker','o',...
-    'MarkerFaceColor','c','MarkerEdgeColor','k');
+    'MarkerFaceColor','c','MarkerEdgeColor','k'); % * draw the observatories
 % Display the OBS names using data in the geostruct field Name.
 % Note that you must treat the Name field as a cell array.
 text([OBS(1:6).Lon]-1,[OBS(1:6).Lat]+0.7,...
@@ -118,19 +117,20 @@ text([OBS(1:6).Lon]-1,[OBS(1:6).Lat]+0.7,...
 hold on
 
 %Put pc5 on the map
-h=pcolor(longi,lati,pc5i)
-set(h,'EdgeColor','none');
-xlabel('Longitude'), ylabel('Latitude'),colorbar;
-caxis([-2.5 2.5])
+h=pcolor(longi,lati,pc5i) % * draw the points
+set(h,'EdgeColor','none'); 
+xlabel('Longitude'), ylabel('Latitude'), colorbar; 
+caxis([-2.5 2.5]) % * colorbar range
 str_title2=['pc5 BOU9 KRGMaps 1.0 2008068 second-',num2str(i)];
 title(str_title2);
 annotation('textbox',...
-    [0.84 0.76 0.077 0.052],...
+    [0.84 0.76 0.077 0.052],... % * position of the text box
     'String',{'nT'},...
     'FontSize',12,...
     'FontName','Arial',...
     'FitBoxToText','off',...
     'LineStyle','none');
-xlim([-127 -66]);ylim([25 50]);
+xlim([-127 -66]); % * longitude range
+ylim([25 50]); % * latitude range
 str_title2s=['pc5_BOU9_KRGMaps_1_2008068_second_',num2str(i)];
 saveas(gcf,['K:\draftFigure\',str_title2,'.png'], 'png')
