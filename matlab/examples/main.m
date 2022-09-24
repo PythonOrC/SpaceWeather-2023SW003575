@@ -1,4 +1,4 @@
-time=1; % * which second to generate frame
+time=721; % * which second to generate frame
 latTUC =  32.17; lonTUC =   -110.73;   
 % OBStion Id: TUC
 % Location: Tucson, AZ
@@ -80,24 +80,25 @@ filename = "6_station_dbn_abridged.csv";
 delimiter = ",";
 dat = readtable("6_station_dbn_abridged.csv", "Delimiter",delimiter, "DatetimeType","datetime");
 meta = readtable("supermag-6-stations.csv", "Delimiter",delimiter, "DatetimeType","datetime");
-[Lat, IA, IC] = unique(meta.GEOLAT);
-[Lon, IA, IC] = unique(meta.GEOLON);
+[lat, IA, IC] = unique(meta.GEOLAT);
+[long, IA, IC] = unique(meta.GEOLON);
 [Stations,IA,IC] = unique(dat.Station);
-
-data = {};
-for i = 1:length(Stations)
-    display(string(S{i}));
-    index = dat.Station == string(Stations{i});
-    datS = dat(index,:);
-    data = [data, datS{:,7}];
+for i = 1:length(lat)
+    if lat(i) > 180
+        lat(i) = lat(i) - 360;
+    end
+    if long(i) > 180
+        long(i) = long(i) - 360;
+    end
 end
-disp(Lats);
-disp(Lons);
+data = {};
 
-
-
-
-
+for i = 1:length(Stations)
+    datS = dat(dat.Station == string(Stations{i}),:);
+    data = [data; datS{:,7}];
+end
+all = table(Stations, data);
+disp(all);
 clear OBS;
 [OBS(1:12).Geometry] = deal('Point');
 for i = 1:length(Lats)
@@ -115,24 +116,36 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % lat=[latTUC latFRN latBOU latNEW latFRD latBSL latSJG latHON latSIT];
 % long=[lonTUC lonFRN lonBOU lonNEW lonFRD lonBSL lonSJG lonHON lonSIT];
-pc5=[atucBH(8,i)+atucBH(9,i) afrnBH(8,i)+afrnBH(9,i) abouBH(8,i)+abouBH(9,i)...
-    anewBH(8,i)+anewBH(9,i) afrdBH(8,i)+afrdBH(9,i) abslBH(8,i)+abslBH(9,i) asjgBH(8,i)+asjgBH(9,i)...
-    ahonBH(8,i)+ahonBH(9,i) asitBH(8,i)+asitBH(9,i)]'; % * wavlet level 
+pc5 = [];
+for i = 1:length(Stations)
+    pc5 = [pc5 all(strcmp(all.Stations, Stations(i)), : ).data{1}(time)];
+end
+pc5=pc5';
+disp(pc5);
+% pc5=[atucBH(8,i)+atucBH(9,i) afrnBH(8,i)+afrnBH(9,i) abouBH(8,i)+abouBH(9,i)...
+%     anewBH(8,i)+anewBH(9,i) afrdBH(8,i)+afrdBH(9,i) abslBH(8,i)+abslBH(9,i) asjgBH(8,i)+asjgBH(9,i)...
+%     ahonBH(8,i)+ahonBH(9,i) asitBH(8,i)+asitBH(9,i)]'; % * wavlet level 
 %Use meshgrid to create a set of 2-D grid points in the longitude-latitude plane and then use griddata to interpolate the corresponding depth at those points:
 [longi,lati] = meshgrid(-127:0.5:-66, 25:0.5:50); % * 0.5 is the resolution, longitude then latitude
-v = variogram([long' lat'],pc5);
-[dum,dum,dum,vstruct] = variogramfit(v.distance,v.val,[],[],[],'model','stable');
+disp(length(long));
+disp(length(lat));
+disp(length(pc5));
+% v = variogram([long' lat'],pc5);
+disp([long lat]);
+disp(pc5);
+v = variogram([long lat],pc5);
+[~,~,~,vstruct] = variogramfit(v.distance,v.val,[],[],[],'model','stable');
 close;
 [pc5i,pc5Vari] = krigingtest(vstruct,long',lat',pc5,longi,lati);
 
-% plot USA map with province
-s = shaperead('physio_Dissolve_province.shp'); % * any .shp file would do 
-figure('Color','w'); 
-mapshow(s);  % * draw the map
+% % plot USA map with province
+% s = shaperead('physio_Dissolve_province.shp'); % * any .shp file would do 
+% figure('Color','w'); 
+% mapshow(s);  % * draw the map
 
 % PUT OBS ON THE MAP
-mapshow(OBS(1:6),'Marker','o',...
-    'MarkerFaceColor','c','MarkerEdgeColor','k'); % * draw the observatories
+% mapshow(OBS(1:6),'Marker','o',...
+%     'MarkerFaceColor','c','MarkerEdgeColor','k'); % * draw the observatories
 % Display the OBS names using data in the geostruct field Name.
 % Note that you must treat the Name field as a cell array.
 text([OBS(1:6).Lon]-1,[OBS(1:6).Lat]+0.7,...
@@ -140,7 +153,7 @@ text([OBS(1:6).Lon]-1,[OBS(1:6).Lat]+0.7,...
 hold on
 
 %Put pc5 on the map
-h=pcolor(longi,lati,pc5i) % * draw the points
+h=pcolor(longi,lati,pc5i); % * draw the points
 set(h,'EdgeColor','none'); 
 xlabel('Longitude'), ylabel('Latitude'), colorbar; 
 caxis([-2.5 2.5]) % * colorbar range
