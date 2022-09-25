@@ -1,4 +1,4 @@
-time=721; % * which second to generate frame
+time=1260; % * which second to generate frame
 latTUC =  32.17; lonTUC =   -110.73;   
 % OBStion Id: TUC
 % Location: Tucson, AZ
@@ -80,9 +80,10 @@ filename = "6_station_dbn_abridged.csv";
 delimiter = ",";
 dat = readtable("6_station_dbn_abridged.csv", "Delimiter",delimiter, "DatetimeType","datetime");
 meta = readtable("supermag-6-stations.csv", "Delimiter",delimiter, "DatetimeType","datetime");
-[lat, IA, IC] = unique(meta.GEOLAT);
-[long, IA, IC] = unique(meta.GEOLON);
 [Stations,IA,IC] = unique(dat.Station);
+lat = meta.GEOLAT(1:length(Stations), 1);
+long = meta.GEOLON(1:length(Stations), 1);
+
 for i = 1:length(lat)
     if lat(i) > 180
         lat(i) = lat(i) - 360;
@@ -91,82 +92,83 @@ for i = 1:length(lat)
         long(i) = long(i) - 360;
     end
 end
+
 data = {};
 
 for i = 1:length(Stations)
-    datS = dat(dat.Station == string(Stations{i}),:);
-    data = [data; datS{:,7}];
+    %datS = dat(dat.Station == string(Stations{i}),:);
+    datS = meta(meta.IAGA == string(Stations{i}),:);
+    disp(meta.dbn_nez);
+    data = [data; meta.dbn_nez];
+    %dat4 = datS{:,4};
+    %dat5 = datS{:,5};
+    %dat6 = datS{:,6};
+    %data = [data; dat4+dat5+dat6];
 end
 all = table(Stations, data);
-disp(all);
 clear OBS;
-[OBS(1:12).Geometry] = deal('Point');
-for i = 1:length(Lats)
-    OBS(i).Lat = Lats(i);
-    OBS(i).Lon = Lons(i);
+[OBS(1:length(Stations)).Geometry] = deal('Point');
+for i = 1:length(lat)
+    OBS(i).Lat = lat(i);
+    OBS(i).Lon = long(i);
     OBS(i).Name = string(Stations(i));
 end
-% OBS(1).Lat = latTUC; OBS(1).Lon = lonTUC; OBS(1).Name = 'TUC';
-% OBS(2).Lat = latFRN; OBS(2).Lon = lonFRN; OBS(2).Name = 'FRN';
-% OBS(3).Lat = latBOU; OBS(3).Lon = lonBOU; OBS(3).Name = 'BOU';
-% OBS(4).Lat = latNEW; OBS(4).Lon = lonNEW; OBS(4).Name = 'NEW';
-% OBS(5).Lat = latFRD; OBS(5).Lon = lonFRD; OBS(5).Name = 'FRD';
-% OBS(6).Lat = latBSL; OBS(6).Lon = lonBSL; OBS(6).Name = 'BSL';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% lat=[latTUC latFRN latBOU latNEW latFRD latBSL latSJG latHON latSIT];
-% long=[lonTUC lonFRN lonBOU lonNEW lonFRD lonBSL lonSJG lonHON lonSIT];
-pc5 = [];
-for i = 1:length(Stations)
-    pc5 = [pc5 all(strcmp(all.Stations, Stations(i)), : ).data{1}(time)];
+for n=time:time+60
+    pc5 = [];
+    for i = 1:length(Stations)
+        pc5 = [pc5 all(strcmp(all.Stations, Stations(i)), : ).data{1}(n)];
+    end
+    %Use meshgrid to create a set of 2-D grid points in the longitude-latitude plane and then use griddata to interpolate the corresponding depth at those points:
+    [longi,lati] = meshgrid(-127:0.5:-66, 25:0.5:50); % * 0.5 is the resolution, longitude then latitude
+    v = variogram([long lat],pc5');
+    [~,~,~,vstruct] = variogramfit(v.distance,v.val,[],[],[],'model','stable');
+    close;
+    [pc5i,pc5Vari] = krigingtest(vstruct,long',lat',pc5,longi,lati);
+    
+    % % plot USA map with province
+    % s = shaperead('physio_Dissolve_province.shp'); % * any .shp file would do 
+    % figure('Color','w'); 
+    % mapshow(s);  % * draw the map
+    
+    % PUT OBS ON THE MAP
+    %mapshow(OBS(1:6),'Marker','o',...
+     %   'MarkerFaceColor','c','MarkerEdgeColor','k'); % * draw the observatories
+    % Display the OBS names using data in the geostruct field Name.
+    % Note that you must treat the Name field as a cell array.
+    text([OBS.Lon]-1,[OBS.Lat]+0.7,...
+        {OBS.Name},'FontWeight','bold');
+    hold on
+    
+    %Put pc5 on the map
+    h=pcolor(longi,lati,pc5i); % * draw the points
+    set(h,'EdgeColor','none'); 
+    xlabel('Longitude'), ylabel('Latitude'), colorbar; 
+    %disp(dat.Data_D1);
+    % [min, max] = bounds(dat.Data_D1');
+    % [min, max] = bounds([dat.Data_D2' max min]);
+    % [min, max] = bounds([dat.Data_D3' max min]);
+    % max = round(max);
+    % min = round(min);
+    min = -600;
+    max = 800;
+    clim([min max]) % * colorbar range
+    str_title2=['pc5 BOU9 KRGMaps 1.0 2008068 second-',num2str(n)];
+    title(str_title2);
+    annotation('textbox',...
+        [0.84 0.76 0.077 0.052],... % * position of the text box
+        'String',{'nT'},...
+        'FontSize',12,...
+        'FontName','Arial',...
+        'FitBoxToText','off',...
+        'LineStyle','none');
+    xlim([-127 -66]); % * longitude range
+    ylim([25 50]); % * latitude range
+    saveas(gcf,['D:\Github Repository\SpaceWeather\matlab\examples\draftFigure\',num2str(n),'.png'], 'png')
+
 end
-pc5=pc5';
-disp(pc5);
-% pc5=[atucBH(8,i)+atucBH(9,i) afrnBH(8,i)+afrnBH(9,i) abouBH(8,i)+abouBH(9,i)...
-%     anewBH(8,i)+anewBH(9,i) afrdBH(8,i)+afrdBH(9,i) abslBH(8,i)+abslBH(9,i) asjgBH(8,i)+asjgBH(9,i)...
-%     ahonBH(8,i)+ahonBH(9,i) asitBH(8,i)+asitBH(9,i)]'; % * wavlet level 
-%Use meshgrid to create a set of 2-D grid points in the longitude-latitude plane and then use griddata to interpolate the corresponding depth at those points:
-[longi,lati] = meshgrid(-127:0.5:-66, 25:0.5:50); % * 0.5 is the resolution, longitude then latitude
-disp(length(long));
-disp(length(lat));
-disp(length(pc5));
-% v = variogram([long' lat'],pc5);
-disp([long lat]);
-disp(pc5);
-v = variogram([long lat],pc5);
-[~,~,~,vstruct] = variogramfit(v.distance,v.val,[],[],[],'model','stable');
-close;
-[pc5i,pc5Vari] = krigingtest(vstruct,long',lat',pc5,longi,lati);
 
-% % plot USA map with province
-% s = shaperead('physio_Dissolve_province.shp'); % * any .shp file would do 
-% figure('Color','w'); 
-% mapshow(s);  % * draw the map
 
-% PUT OBS ON THE MAP
-% mapshow(OBS(1:6),'Marker','o',...
-%     'MarkerFaceColor','c','MarkerEdgeColor','k'); % * draw the observatories
-% Display the OBS names using data in the geostruct field Name.
-% Note that you must treat the Name field as a cell array.
-text([OBS(1:6).Lon]-1,[OBS(1:6).Lat]+0.7,...
-    {OBS(1:6).Name},'FontWeight','bold');
-hold on
 
-%Put pc5 on the map
-h=pcolor(longi,lati,pc5i); % * draw the points
-set(h,'EdgeColor','none'); 
-xlabel('Longitude'), ylabel('Latitude'), colorbar; 
-caxis([-2.5 2.5]) % * colorbar range
-str_title2=['pc5 BOU9 KRGMaps 1.0 2008068 second-',num2str(i)];
-title(str_title2);
-annotation('textbox',...
-    [0.84 0.76 0.077 0.052],... % * position of the text box
-    'String',{'nT'},...
-    'FontSize',12,...
-    'FontName','Arial',...
-    'FitBoxToText','off',...
-    'LineStyle','none');
-xlim([-127 -66]); % * longitude range
-ylim([25 50]); % * latitude range
-str_title2s=['pc5_BOU9_KRGMaps_1_2008068_second_',num2str(i)];
-saveas(gcf,['K:\draftFigure\',str_title2,'.png'], 'png')
+%%%%%%%%%%%%%
