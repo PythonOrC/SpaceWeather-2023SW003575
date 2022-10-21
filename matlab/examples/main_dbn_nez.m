@@ -32,7 +32,9 @@ for i = 1:length(Stations)
     % add the datum to the data cell array
     data = [data; datum];
 end
+
 % combine the data and the Stations together
+clear OBS;
 OBS = table(Stations, data, lat, long);
 %resulting sample structure of all:
     % Stations         data           lat      long  
@@ -43,18 +45,20 @@ OBS = table(Stations, data, lat, long);
     % {'FRN'}     {1440×1 double}    37.09    -119.72
     % {'NEW'}     {1440×1 double}    48.27    -117.12
 
+%combine all the values together
+clear dat;
 dat = [];
 for i = 1:length(OBS.Stations)
     dat = [dat OBS(strcmp(OBS.Stations, OBS.Stations(i)), : ).data{1}];
 end
+
+%get the upper and lower bounds of the data
+clear min;
+clear max;
 min = min(min(dat));
 max = max(max(dat));
-disp(min)
-disp(max)
     %Use meshgrid to create a set of 2-D grid points in the longitude-latitude plane and then use griddata to interpolate the corresponding depth at those points:
 [longi,lati] = meshgrid(-127:0.5:-66, 25:0.5:50); % * 0.5 is the resolution, longitude then latitude
-% min = -400;
-% max = 5000;
 % graph the data
 for t = TIME:TIME+DURATION
     dat_c = dat(t,:);
