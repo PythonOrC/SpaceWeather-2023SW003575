@@ -1,11 +1,11 @@
 DATA = 'dbn_nez';
-TIME = 444;
-DURATION = 5;
-INTERVAL = TIME:TIME+DURATION;
+TIME = 309;
+DURATION = 240;
+INTERVAL = TIME:TIME+DURATION-1;
 MARGIN = 3;
 % import the raw unprocessed data
 %raw = readtable("supermag-6-stations.csv", "Delimiter",",", "DatetimeType","datetime");
-raw = readtable("all-na-stations-noRAN+SMI+UPN.csv", "Delimiter",",", "DatetimeType","datetime");
+raw = readtable("HalloweenStorm-SuperMAG-0509.csv", "Delimiter",",", "DatetimeType","datetime");
 % get the stations from the raw data
 [Stations,IA,IC] = unique(raw.IAGA);
 % get the latitude and longitude of each station
@@ -69,7 +69,8 @@ for i = 1:length(Stations)
     % raw datum refers to all the data from a single station
     raw_datum = raw(raw.IAGA == string(Stations(i)), :);
     % extract the needed datum from the raw datum
-    datum = table2array(raw_datum(INTERVAL,{DATA}));
+    % datum = table2array(raw_datum(INTERVAL,{DATA}));
+    datum = table2array(raw_datum(:,{DATA}));
     %interpolate the Nan values
     datum = fillmissing(datum, 'linear');
     % add the datum to the data cell array
@@ -106,7 +107,8 @@ max = max(max(dat));
 %[longi,lati] = meshgrid(-127:0.5:-66, 25:0.5:50);
 % graph the data
 % for t = TIME:TIME+DURATION
-for t = 1:DURATION
+% for t = 1:DURATION
+for t = 1: length(OBS.data{1})
     disp("Generating...");
     dat_c = dat(t,:);
     v = variogram([OBS.long OBS.lat],dat_c');
@@ -126,13 +128,13 @@ for t = 1:DURATION
         s = shaperead('landareas.shp');
     mapshow(LOC(1:length(LOC)),'Marker','o',...
     'MarkerFaceColor','c','MarkerEdgeColor','k');
-    text(OBS.long,OBS.lat, [string(OBS.Stations)],'FontWeight','bold');
+    % text(OBS.long,OBS.lat, [string(OBS.Stations)],'FontWeight','bold');
     mapshow(s,'FaceAlpha', 0);
     
     % colormap gray;
     xlabel('Longitude'), ylabel('Latitude'), colorbar; 
     clim([min max]) % * colorbar range
-    str_title2=[DATA,' 20031029 minute-',num2str(t+TIME)];
+    str_title2=[replace(DATA, "_"," "),' 20031029 minute-',num2str(t+TIME-1)];
     title(str_title2);
     annotation('textbox',...
         [0.84 0.76 0.077 0.052],... % * position of the text box
