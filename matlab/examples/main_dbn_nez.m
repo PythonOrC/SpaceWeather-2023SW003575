@@ -1,65 +1,96 @@
 DATA = 'dbn_nez';
-TIME = 309;
-DURATION = 240;
+TIME = 1044;
+DURATION = 420;
 INTERVAL = TIME:TIME+DURATION-1;
-MARGIN = 3;
+MARGIN = 0;
+MLT_MARGIN = 1;
+MAGLAT_CHUNK_SIZE = 15;
 % import the raw unprocessed data
-%raw = readtable("supermag-6-stations.csv", "Delimiter",",", "DatetimeType","datetime");
-raw = readtable("HalloweenStorm-SuperMAG-0509.csv", "Delimiter",",", "DatetimeType","datetime");
+raw = readtable("HalloweenStorm-SuperMAG-1724.csv", "Delimiter",",", "DatetimeType","datetime");
 % get the stations from the raw data
-[Stations,IA,IC] = unique(raw.IAGA);
+[Stations,IA,IC] = unique(raw.IAGA, 'stable');
+mlt_all = raw.MLT;
+maglat_all = raw.MAGLAT;
 % get the latitude and longitude of each station
 lat = raw.GEOLAT(1:length(Stations), 1);
 long = raw.GEOLON(1:length(Stations), 1);
-clear LOC;
-[LOC(1:length(Stations)).Geometry] = deal('Point');
-for i = 1:length(Stations)
-    LOC(i).Lat = lat(i);
-    LOC(i).Lon = long(i);
-end
+% clear LOC;
+% LOC={};
 
-%convert the lat and long from [0,360] to [-180,180]
-for i = 1:length(lat)
-    if lat(i) > 180
-        lat(i) = lat(i) - 360;
-    end
-    if long(i) > 180
-        long(i) = long(i) - 360;
-    end
-end
+% for i = 1:length(raw.MLT)/length(Stations)
+%     loc_n = [];
+%     loc_m = [];
+%     n = 0;
+%     m = 0;
 
-% max_lat = lat(1);
-% min_lat = lat(1);
-% max_long = lat(1);
-% min_long = lat(1);
-% min_long_index = 1;
-% max_long_index = 1;
-% min_lat_index = 1;
-% max_lat_index = 1;
-% for i = 1:length(lat)
-%     if lat(i) > max_lat
-%         max_lat = lat(i);
-%         max_lat_index = i;
+%     for j = 1:length(Stations)
+%         mlt = mlt_all((i-1)*length(Stations)+j);
+%         if mlt <= 12+MLT_MARGIN && mlt >= 12-MLT_MARGIN
+%             m = m + 1;
+%             loc_m(m).Geometry = 'Point';
+%             loc_m(m).Lat = lat(j);
+%             loc_m(m).Lon = long(j);
+%         else
+%             n = n + 1;
+%             loc_n(n).Geometry = 'Point';
+%             loc_n(n).Lat = lat(j);
+%             loc_n(n).Lon = long(j);
+%         end
 %     end
-%     if lat(i) < min_lat
-%         min_lat = lat(i);
-%         min_lat_index = i;
-%     end
-%     if long(i) > max_long
-%         max_long = long(i);
-%         max_long_index = i;
-%     end
-%     if long(i) < min_long
-%         min_long = long(i);
-%         min_long_index = i;
-%     end
+%     LOC{1,i} = loc_n;
+%     LOC{2,i} = loc_m;
 % end
+
+clear LOC;
+% lat + long of stattions MLT != 12
+LOC={};
+
+for i = 1:length(raw.MLT)/length(Stations)
+    % temp storage for MLT != 12
+    loc_n = [];
+    % temp storage for MLT == 12
+    loc_m = [];
+    % indexs
+    loc_n_i = zeros(ceil(180/MAGLAT_CHUNK_SIZE)+1,1) + 1;
+    loc_m_i = zeros(ceil(180/MAGLAT_CHUNK_SIZE)+1,1) + 1;
+    % loop through each station individually
+    % j = index of station
+    for j = 1:length(Stations)
+        mlt = mlt_all((i-1)*length(Stations)+j);
+        maglat = maglat_all((i-1)*length(Stations)+j);
+        % decide which maglat chunk the station is in
+        maglat_chunk = floor(maglat/MAGLAT_CHUNK_SIZE) + ceil(floor(180/MAGLAT_CHUNK_SIZE)/2)+1;
+        % append the station to the correct list
+        if mlt <= 12+MLT_MARGIN && mlt >= 12-MLT_MARGIN
+            loc_m{maglat_chunk}(loc_m_i(maglat_chunk)).Geometry = 'Point';
+            loc_m{maglat_chunk}(loc_m_i(maglat_chunk)).Lat = lat(j);
+            loc_m{maglat_chunk}(loc_m_i(maglat_chunk)).Lon = long(j);
+            loc_m_i(maglat_chunk) = loc_m_i(maglat_chunk) + 1;
+        else
+            loc_n{maglat_chunk}(loc_n_i(maglat_chunk)).Geometry = 'Point';
+            loc_n{maglat_chunk}(loc_n_i(maglat_chunk)).Lat = lat(j);
+            loc_n{maglat_chunk}(loc_n_i(maglat_chunk)).Lon = long(j);
+            loc_n_i(maglat_chunk) = loc_n_i(maglat_chunk) + 1;
+        end
+    end
+    LOC{1,i} = loc_m;
+    LOC{2,i} = loc_n;
+end
+% struct of LOC
+%                  t=1            t=2            t=3            t=4            t=5            t=6            t=7        t=n 
+% MLT == 12 -> {1×16 cell}    {1×16 cell}    {1×16 cell}    {1×16 cell}    {1×16 cell}    {1×16 cell}    {1×16 cell}    ...
+% MLT != 12 -> {1×18 cell}    {1×18 cell}    {1×18 cell}    {1×18 cell}    {1×18 cell}    {1×18 cell}    {1×18 cell}    ...
+
+% struct of one of the cell
+%    -90           -89 ~ -80       -79 ~ -60               80 ~ 90
+% {0×0 double}    {1×4 double}    {0×0 double}    ...    {1×5 double}
 clear max;
 clear min;
-max_lat = max(lat) + MARGIN;
-min_lat = min(lat) - MARGIN;
-max_long = max(long) + MARGIN;
-min_long = min(long) - MARGIN;
+max_lat = 90;
+min_lat = -90;
+max_long = 180;
+min_long = -180;
+
 clear max;
 clear min;
 % extract the necessary data from the raw data
@@ -104,11 +135,10 @@ min = min(min(dat));
 max = max(max(dat));
     %Use meshgrid to create a set of 2-D grid points in the longitude-latitude plane and then use griddata to interpolate the corresponding depth at those points:
 [longi,lati] = meshgrid(min_long:1:max_long, min_lat:1:max_lat); % * 0.5 is the resolution, longitude then latitude
-%[longi,lati] = meshgrid(-127:0.5:-66, 25:0.5:50);
 % graph the data
-% for t = TIME:TIME+DURATION
-% for t = 1:DURATION
+s = shaperead('landareas.shp');
 for t = 1: length(OBS.data{1})
+% for t = 1:1
     disp("Generating...");
     dat_c = dat(t,:);
     v = variogram([OBS.long OBS.lat],dat_c');
@@ -119,22 +149,51 @@ for t = 1: length(OBS.data{1})
     
   figure('Color','w', 'Position',[0 0 1280 720]);
 
-    
-
-
     h=pcolor(longi,lati,OBSi); % * draw the points
     hold on
     set(h,'EdgeColor','none'); 
-        s = shaperead('landareas.shp');
-    mapshow(LOC(1:length(LOC)),'Marker','o',...
-    'MarkerFaceColor','c','MarkerEdgeColor','k');
-    % text(OBS.long,OBS.lat, [string(OBS.Stations)],'FontWeight','bold');
+        
+    % mapshow(LOC{1,t},'Marker','o',...
+    % 'MarkerFaceColor',[1 0.5 0],'MarkerEdgeColor','k');
+    % mapshow(LOC{2,t},'Marker','o',...
+    % 'MarkerFaceColor','b','MarkerEdgeColor','k');
+    % display the stations
+    for i = 1:length(LOC{2,t})
+        if ~isempty(LOC{2,t}{i})
+            if i/2 ~= floor(i/2)
+                c = [0 0 0];
+            else
+                c = [1 1 1];
+            end
+            mapshow(LOC{2,t}{i},'Marker','o',...
+            'MarkerFaceColor',c,'MarkerEdgeColor','k');
+        end
+    end
+
+    for i = 1:length(LOC{1,t})
+        if ~isempty(LOC{1,t}{i})
+            if i/2 ~= floor(i/2)
+                c = [0 0 0];
+            else
+                c = [1 1 1];
+            end
+            mapshow(LOC{1,t}{i},'Marker','d',...
+            'MarkerFaceColor',c,'MarkerEdgeColor','k');
+        end
+    end
     mapshow(s,'FaceAlpha', 0);
     
     % colormap gray;
     xlabel('Longitude'), ylabel('Latitude'), colorbar; 
     clim([min max]) % * colorbar range
-    str_title2=[replace(DATA, "_"," "),' 20031029 minute-',num2str(t+TIME-1)];
+    if t+TIME-1 <= 1440
+        date_label =  '20031029 minute-';
+        minute_time = t+TIME-1;
+    else
+        date_label =  '20031030 minute-';
+        minute_time = t+TIME-1-1440;
+    end
+    str_title2=[replace(DATA, "_"," "),' ',date_label,num2str(minute_time)];
     title(str_title2);
     annotation('textbox',...
         [0.84 0.76 0.077 0.052],... % * position of the text box
@@ -146,5 +205,5 @@ for t = 1: length(OBS.data{1})
     xlim([min_long max_long-1]); % * longitude range
     ylim([min_lat max_lat-1]); % * latitude range
     
-    saveas(gcf,['D:\Github Repository\SpaceWeather\matlab\examples\draftFigure\',num2str(t),'.png'], 'png')
+    saveas(gcf,['D:\Github Repository\SpaceWeather\matlab\examples\draftFigure\',date_label,num2str(minute_time),'.png'], 'png')
 end
