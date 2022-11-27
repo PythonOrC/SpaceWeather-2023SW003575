@@ -7,6 +7,8 @@ MLT_MARGIN = 1;
 MAGLAT_CHUNK_SIZE = 15;
 % import the raw unprocessed data
 raw = readtable("HalloweenStorm-SuperMAG-1724.csv", "Delimiter",",", "DatetimeType","datetime");
+raw_ACE = readtable("ACE_2003_10_29.csv");
+
 % get the stations from the raw data
 [Stations,IA,IC] = unique(raw.IAGA, 'stable');
 mlt_all = raw.MLT;
