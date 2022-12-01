@@ -1,13 +1,23 @@
 DATA = 'dbn_nez';
-TIME = 1044;
-DURATION = 420;
-INTERVAL = TIME:TIME+DURATION-1;
+SEG = 2;
 MARGIN = 0;
 MLT_MARGIN = 1;
-MAGLAT_CHUNK_SIZE = 15;
+MAGLAT_CHUNK_SIZE = 10;
 % import the raw unprocessed data
-raw = readtable("HalloweenStorm-SuperMAG-1724.csv", "Delimiter",",", "DatetimeType","datetime");
-raw_ACE = readtable("ACE_2003_10_29.csv");
+if SEG == 1
+    raw = readtable("HalloweenStorm-SuperMAG-0509.csv", "Delimiter",",", "DatetimeType","datetime");
+    raw_ACE = readtable("ACE_0509_interp.csv");
+    TIME = 309;
+    DURATION = 240;
+
+else
+    TIME = 1044;
+    DURATION = 420;
+    raw = readtable("HalloweenStorm-SuperMAG-1724.csv", "Delimiter",",", "DatetimeType","datetime");
+    raw_ACE = readtable("ACE_1724_interp.csv");
+end
+
+INTERVAL = TIME:TIME+DURATION-1;
 
 % get the stations from the raw data
 [Stations,IA,IC] = unique(raw.IAGA, 'stable');
@@ -16,6 +26,9 @@ maglat_all = raw.MAGLAT;
 % get the latitude and longitude of each station
 lat = raw.GEOLAT(1:length(Stations), 1);
 long = raw.GEOLON(1:length(Stations), 1);
+By = raw_ACE.By;
+Bz = raw_ACE.Bz;
+
 % clear LOC;
 % LOC={};
 
@@ -189,14 +202,15 @@ for t = 1: length(OBS.data{1})
     xlabel('Longitude'), ylabel('Latitude'), colorbar; 
     clim([min max]) % * colorbar range
     if t+TIME-1 <= 1440
-        date_label =  '20031029 minute-';
+        date_label =  '20031029 minute ';
         minute_time = t+TIME-1;
     else
-        date_label =  '20031030 minute-';
+        date_label =  '20031030 minute ';
         minute_time = t+TIME-1-1440;
     end
-    str_title2=[replace(DATA, "_"," "),' ',date_label,num2str(minute_time)];
-    title(str_title2);
+    formatSpec = '%.2f';
+    str_title=[replace(DATA, "_"," "),' ',date_label,num2str(minute_time),'    ','(By, Bz): (', num2str(By(t),formatSpec),', ',num2str(Bz(t),formatSpec),')'];
+    title(str_title);
     annotation('textbox',...
         [0.84 0.76 0.077 0.052],... % * position of the text box
         'String',{'nT'},...
