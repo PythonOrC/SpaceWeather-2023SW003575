@@ -11,6 +11,7 @@ op <- par(
 
 VIC_csvdata_1029 <- read.csv("D:/Personal/Coding/Space Weather/20031029-supermag.csv", header = TRUE, sep = ",", fill = TRUE, comment.char = "")
 all_csvdata_1029 <- read.csv("D:\\Personal\\Coding\\Space Weather\\20031029-supermag-6-stations.csv", header = TRUE, sep = ",", fill = TRUE, comment.char = "")
+
 BOU_csvdata_1029 <- seperate(all_csvdata_1029, "BOU")
 NEW_csvdata_1029 <- seperate(all_csvdata_1029, "NEW")
 BSL_csvdata_1029 <- seperate(all_csvdata_1029, "BSL")
