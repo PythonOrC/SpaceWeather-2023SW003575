@@ -11,11 +11,14 @@
 %TODO: do the same maglat and maglon analysis
 
 
-DATA = 'dbn_nez';
+
+
+
 SEG = "0509";
 PRENOON = true;
-Xcorr = 3;
-LINE = "MAGLAT"
+ZONE = "south";
+Xcorr = 0;
+LINE = "MAGLAT";
 
 if SEG == "0509"
     if LINE == "MAGLAT"
@@ -40,17 +43,25 @@ if SEG == "0509"
         end
     elseif LINE == "MAGLON"
         % when the line is maglon
-        if PRENOON == true
+        if ZONE == "north"
             if Xcorr == 0
-                STATIONS =[];
+                STATIONS =["TIK" "KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW" "FSP" "YKC" "CNL" "SMI" "FMC" "GIM" "ISL" "FCC" "RAN" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
             elseif Xcorr == 1
-                STATIONS =[];
+                STATIONS = ["SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK" "TIK" "KTN" "CHD" "BRW"];
+            elseif Xcorr == 2
+                STATIONS = ["BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW" "FSP" "YKC" "CNL" "SMI" "FMC" "GIM" "ISL" "FCC" "RAN" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV"];
             end
-        else
+        elseif ZONE == "equator"
             if Xcorr == 0
-                STATIONS = []; 
+                STATIONS = ["KDU" "WEP" "CTA" "API" "PPT" "VLD" "OSO" "SER" "CER" "PAC" "TRW" "VSS" "ASC" "TAN"]; 
             elseif Xcorr == 1
-                STATIONS = [];  
+                STATIONS = ["KDU" "WEP" "CTA" "API" "PPT" "VLD" "OSO" "SER" "CER" "PAC" "TRW" "VSS" "ASC" "TAN"];  
+            end
+        elseif ZONE == "south"
+            if Xcorr == 0
+                STATIONS = ["DRV" "MCQ" "MCM" "SBA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"]; 
+            elseif Xcorr == 1
+                STATIONS = ["DRV" "MCQ" "MCM" "SBA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"];  
             end
         end
     end
@@ -58,36 +69,51 @@ elseif SEG == "1724"
     if LINE == "MAGLAT"
         if PRENOON == true
             if Xcorr == 0
-                STATIONS =[];
+                STATIONS =["DRV" "ASP" "CTA" "KDU" "WEP" "WEW" "GUA" "CBI" "KNY" "KAG" "HTY" "KAK" "ONW" "PPI" "MMB" "MSR" "MGD" "CHD" "KTN"];
             elseif Xcorr == 1
-                STATIONS =[];
+                STATIONS = ["CHD" "KTN"];
+            elseif Xcorr == 2
+                STATIONS =["ASP" "CTA" "KDU" "WEP" "WEW" "GUA" "CBI" "KNY" "KAG" "HTY" "KAK" "ONW" "PPI" "MMB" "MSR"];
             end
         elseif PRENOON == false
             if Xcorr == 0
-                STATIONS = []; 
+                STATIONS = ["MAW" "CZT" "HBK" "BNG" "AAE" "MLT" "ELT" "QSB" "ISK" "SUA" "LVV" "BEL" "HLP" "TAR" "LOV" "UPS" "NUR" "HAN" "OUJ" "PEL" "SOD" "KIR" "MUO" "IVA" "ABK" "KIL" "MAS" "KEV" "AND" "TRO" "SOR" "BJN" "HRN" "HOR" "LYR" "NAL" "DMH" "NRD" "ALE"]; 
             elseif Xcorr == 1
-                STATIONS = [];  
+                STATIONS = ["PEL" "SOD" "KIR" "MUO" "IVA" "ABK" "KIL" "MAS" "KEV" "AND" "TRO" "SOR" "BJN" "HRN" "HOR" "LYR" "NAL" "DMH" "NRD" "ALE"];  
+            elseif Xcorr == 2
+                STATIONS = ["CZT" "HLP" "LOV" "UPS" "NUR" "HAN" "OUJ"]; 
+            elseif Xcorr == 3
+                STATIONS = ["HBK" "BNG" "AAE" "MLT" "ELT" "QSB" "ISK" "SUA" "LVV" "BEL"];  
+
             end
         end
     elseif LINE == "MAGLON"
-        if PRENOON == true
+        if ZONE == "north"
             if Xcorr == 0
-                STATIONS =[];
+                STATIONS =["KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW" "FSP" "YKC" "CNL" "FMC" "RAL" "GIM" "ISL" "FCC" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
             elseif Xcorr == 1
-                STATIONS =[];
+                STATIONS = ["FSP" "YKC" "CNL" "FMC" "RAL" "GIM" "ISL" "FCC" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
+            elseif Xcorr == 2
+                STATIONS = ["KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW"];
             end
-        elseif PRENOON == false
+        elseif ZONE == "equator"
             if Xcorr == 0
-                STATIONS = []; 
+                STATIONS = ["GZH" "BMT" "KAG" "KNY" "HTY" "KAK" "ONW" "CBI" "EWA" "HON" "SJG" "SPT" "EBR" "MLT" "ELT" "QSB" "LZH" "PHU"]; 
             elseif Xcorr == 1
-                STATIONS = [];  
+                STATIONS = ["GZH" "BMT" "KAG" "KNY" "HTY" "KAK" "ONW" "CBI" "EWA" "HON" "SJG" "SPT" "EBR" "MLT" "ELT" "QSB" "LZH" "PHU"];  
+            end
+        elseif ZONE == "south"
+            if Xcorr == 0
+                STATIONS = ["DRV" "MCQ" "MCM" "SBA" "SPA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"]; 
+            elseif Xcorr == 1
+                STATIONS = ["DRV" "MCM" "SBA" "SPA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"];  
             end
         end
     end
 end
 
 
-
+DATA = 'dbn_nez';
 
 % import the raw unprocessed data
 if SEG == "0509"
@@ -147,9 +173,8 @@ figure;
 SPACING = 0;
 hold on;
 for i = 1:length(filtered)
-    data_f = filtered(i);
-    data_f = cell2mat(data_f);
-    plot(1:length(data_f),data_f(:)+SPACING);
+    data_f = filtered{i}(50:150);
+    plot(1:length(data_f),data_f+SPACING);
     if PRENOON == true
 
         % if i == 1
@@ -160,25 +185,39 @@ for i = 1:length(filtered)
         %     SPACING = SPACING + 1000;
         % end
         % SPACING = SPACING + 500;
-        SPACING = SPACING + 300;
+        SPACING = SPACING + 750;
     else
         % if i == 1
         %     SPACING = SPACING + 600;
         % elseif i == 3
         %     SPACING = SPACING + 750;
         % end
-        SPACING = SPACING + 150;
+        SPACING = SPACING + 300;
     end
     
 end
 
 corr_lag = [];
-    if PRENOON == true
-        x_station = 2;
-    elseif PRENOON ==false
-        x_station = 1;
-    end   
-for i = 1:length(filtered)
-    [r, lag] = xcorr(filtered{x_station}(50:150), filtered{i}(50:150)); 
-    corr_lag = [corr_lag; lag(r == max(r)) max(r)];
+corr_r = [];
+    % if PRENOON == true
+    %     x_station = 2;
+    % elseif PRENOON ==false
+    %     x_station = 1;
+    % end   
+if Xcorr == 0
+    for i = 1:length(filtered)
+        temp_lag = [];
+        temp_r = [];
+        for j = 1: length(filtered)
+            [r, lag] = xcorr(filtered{i}(:), filtered{j}(:)); 
+            temp_lag = [temp_lag; lag(r == max(r))];
+            temp_r = [temp_r; max(r)]
+        end
+        corr_r = [corr_r temp_r]
+        corr_lag = [corr_lag temp_lag]
+    end
 end
+
+[r, lag] = xcorr(filtered{1}(:), filtered{2}(:)); 
+lag = lag(r == max(r));
+r = max(r);

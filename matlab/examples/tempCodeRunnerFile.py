@@ -1,2 +1,2 @@
-            longest = current
-            current = []
+
+for row in sorted_longest:
