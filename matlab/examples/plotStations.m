@@ -1,22 +1,6 @@
-%* this is for maglat chain
-%TODO add drv hob can cnb cul cta KTN LEM to afternoon
-%TODO: add NRD DMR JAN CZT to prenon
-
-%*this is for maglon chain
-%TODO: find a chain that is evenly spread out
-%TODO: one in the northen hemisphere one along the equator, and southern hemisphere
-%TODO: same process as maglat chain
-
-%* this is for 1724
-%TODO: do the same maglat and maglon analysis
-
-
-
-
-
-SEG = "0509";
+SEG = "1724";
 PRENOON = false;
-ZONE = "upper north";
+ZONE = "south";
 Xcorr = 99;
 LINE = "MAGLON";
 SPACING = 0;
@@ -25,8 +9,8 @@ INCLUDE_IMF = false;
 IMF_SCALE = 10;
 
 if SEG == "0509"
+    INTERVAL = 50:150;
     if LINE == "MAGLAT"
-        INTERVAL = 50:150;
         if PRENOON == true
             if Xcorr == 0
                 STATIONS =["MAW" "CZT" "HBK" "LMM" "MLT" "ELT" "QSB" "ISK" "SUA" "LVV" "BEL" "HLP" "TAR" "LOV" "UPS" "NUR" "HAN" "OUJ" "PEL" "SOD" "KIR" "MUO" "IVA" "ABK" "KIL" "MAS" "AND" "TRO" "SOR" "BJN" "HOR" "HRN" "ALE"];
@@ -51,8 +35,6 @@ if SEG == "0509"
             end
         end
     elseif LINE == "MAGLON"
-        % when the line is maglon
-        INTERVAL = 50:90;
         if ZONE == "upper north"
             if Xcorr == 0
                 STATIONS =["TIK" "KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW" "FSP" "YKC" "CNL" "SMI" "FMC" "GIM" "ISL" "FCC" "RAN" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
@@ -64,8 +46,8 @@ if SEG == "0509"
                 STATIONS = ["PBQ" "IQA" "SVS" "STF" "AMK" "SCO" "JAN" "BJN" "LYR" "NOK" "TIK" "KTN" "CHD" "BRW" "KAV" "ARC" "FSP" "CNL" "BLC" "RAN"];
             end
         elseif ZONE == "lower north"
-            if Xcoor == 99
-                STATIONS = ["FRD" "STJ" "NAQ" "AMK" "CLF" "FUR" "LVV" "NVS" "IRT" "BMT" "PPI" "MSR" "PET" "GAK" "VIC" "FRN" "TUC" "BOU" "DLR" "BSL"];
+            if Xcorr == 99
+                STATIONS = ["FRD" "STJ" "CLF" "FUR" "LVV" "NVS" "IRT" "BMT" "PPI" "MSR" "PET" "VIC" "FRN" "TUC" "BOU" "DLR" "BSL"];
             end
         elseif ZONE == "equator"
             if Xcorr == 0
@@ -75,9 +57,9 @@ if SEG == "0509"
             elseif Xcorr == 4
                 STATIONS = ["KDU" "WEP" "CTA" "API" "PPT" ];  
             elseif Xcorr == 99
-                STATIONS = ["HUA" "VRE" "KOU" "MBO" "TAM" "BNG" "MLT" "AAE" "ABG" "PHU" "TND" "GUA" "CUL" "API" "HON" "PPT" "TUC" "DLR"];
+                STATIONS = ["HUA" "VRE" "KOU" "MBO" "TAM" "BNG" "MLT" "AAE" "ABG" "PHU" "TND" "GUA" "API" "HON" "PPT"];
             end
-        elseif ZONE == "upper south"
+        elseif ZONE == "south"
             if Xcorr == 0
                 STATIONS = ["DRV" "MCQ" "MCM" "SBA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"]; 
             elseif Xcorr == 1
@@ -86,7 +68,7 @@ if SEG == "0509"
                 STATIONS = ["MCM" "SBA"];  
             elseif Xcorr == 5
                 STATIONS = ["B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04"];  
-            elseif Xcoor == 99
+            elseif Xcorr == 99
                 STATIONS = ["B03" "B23" "B14" "B15" "B04" "MAW" "CZT" "PAF" "AMS" "CSY" "KAT" "LEM" "DRV" "MCQ" "EYR" "MCM" "SBA"];
             end
         end
@@ -116,25 +98,35 @@ elseif SEG == "1724"
             end
         end
     elseif LINE == "MAGLON"
-        if ZONE == "north"
+        if ZONE == "upper north"
             if Xcorr == 0
                 STATIONS =["KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW" "FSP" "YKC" "CNL" "FMC" "RAL" "GIM" "ISL" "FCC" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
             elseif Xcorr == 1
                 STATIONS = ["FSP" "YKC" "CNL" "FMC" "RAL" "GIM" "ISL" "FCC" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
             elseif Xcorr == 2
                 STATIONS = ["KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW"];
+            elseif Xcorr == 99
+                STATIONS = ["PBQ" "IQA" "SVS" "STF" "AMK" "SCO" "JAN" "BJN" "LYR" "NOK" "TIK" "KTN" "CHD" "BRW" "KAV" "ARC" "FSP" "CNL" "BLC" "RAN"];
             end
+        elseif ZONE == "lower north"
+            if Xcorr == 99
+                STATIONS = ["FRD" "STJ" "CLF" "FUR" "LVV" "NVS" "IRT" "BMT" "PPI" "MSR" "PET" "VIC" "FRN" "TUC" "BOU" "DLR"];
+            end    
         elseif ZONE == "equator"
             if Xcorr == 0
                 STATIONS = ["GZH" "BMT" "KAG" "KNY" "HTY" "KAK" "ONW" "CBI" "EWA" "HON" "SJG" "SPT" "EBR" "MLT" "ELT" "QSB" "LZH" "PHU"]; 
             elseif Xcorr == 1
                 STATIONS = ["GZH" "BMT" "KAG" "KNY" "HTY" "KAK" "ONW" "CBI" "EWA" "HON" "SJG" "SPT" "EBR" "MLT" "ELT" "QSB" "LZH" "PHU"];  
+            elseif Xcorr == 99
+                STATIONS = ["HUA" "VRE" "KOU" "MBO" "TAM" "BNG" "MLT" "AAE" "ABG" "PHU" "TND" "GUA" "API" "HON" "PPT"];
             end
         elseif ZONE == "south"
             if Xcorr == 0
                 STATIONS = ["DRV" "MCQ" "MCM" "SBA" "SPA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"]; 
             elseif Xcorr == 1
                 STATIONS = ["DRV" "MCM" "SBA" "SPA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"];  
+            elseif Xcorr == 99
+                STATIONS = ["B03" "B23" "B14" "B15" "B04" "MAW" "CZT" "PAF" "AMS" "CSY" "LRM" "LEM" "DRV" "MCQ" "EYR" "MCM" "SBA"];
             end
         end
     end
