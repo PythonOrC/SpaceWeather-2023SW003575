@@ -1,6 +1,6 @@
-SEG = "1724";
+SEG = "0509";
 PRENOON = false;
-ZONE = "south";
+ZONE = "upper north";
 Xcorr = 99;
 LINE = "MAGLON";
 SPACING = 0;

@@ -2,7 +2,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 names = ['1724south_lag','1724south_r','1724equator_lag','1724equator_r', '1724uppernorth_lag','1724uppernorth_r','1724midnorth_lag','1724midnorth_r']
-
+names = ['0509uppernorth_r']
 for name in names:
     if name[-1:] == 'r':
         fmt = '.2f'
