@@ -1,0 +1,400 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.14)  1 MAR 2023 20:39
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**SpaceWeather.tex
+(./SpaceWeather.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2022-12-17> (./agujournal2019.cls
+Document Class: agujournal2019 01/14/2019
+(d:/texlive/2022/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(d:/texlive/2022/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(d:/texlive/2022/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(d:/texlive/2022/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(d:/texlive/2022/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(d:/texlive/2022/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen140
+\Gin@req@width=\dimen141
+)
+(d:/texlive/2022/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+
+(d:/texlive/2022/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+
+(d:/texlive/2022/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
+Package xcolor Info: Model `RGB' extended on input line 1369.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+)
+(d:/texlive/2022/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(d:/texlive/2022/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2022/07/30 line numbers on paragraphs v5.0
+\linenopenalty=\count185
+\output=\toks17
+\linenoprevgraf=\count186
+\linenumbersep=\dimen142
+\linenumberwidth=\dimen143
+\c@linenumber=\count187
+\c@pagewiselinenumber=\count188
+\c@LN@truepage=\count189
+\c@internallinenumber=\count190
+\c@internallinenumbers=\count191
+\quotelinenumbersep=\dimen144
+\bframerule=\dimen145
+\bframesep=\dimen146
+\bframebox=\box51
+
+(d:/texlive/2022/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count192
+)
+\linenoamsmath@ams@eqpen=\count193
+LaTeX Info: Redefining \\ on input line 3114.
+)
+(d:/texlive/2022/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
+)
+(d:/texlive/2022/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2022/11/13 v3.2 ragged2e Package
+\CenteringLeftskip=\skip48
+\RaggedLeftLeftskip=\skip49
+\RaggedRightLeftskip=\skip50
+\CenteringRightskip=\skip51
+\RaggedLeftRightskip=\skip52
+\RaggedRightRightskip=\skip53
+\CenteringParfillskip=\skip54
+\RaggedLeftParfillskip=\skip55
+\RaggedRightParfillskip=\skip56
+\JustifyingParfillskip=\skip57
+\CenteringParindent=\skip58
+\RaggedLeftParindent=\skip59
+\RaggedRightParindent=\skip60
+\JustifyingParindent=\skip61
+)
+(d:/texlive/2022/texmf-dist/tex/latex/graphics/rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+
+(d:/texlive/2022/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count194
+\rotFPtop=\skip62
+\rotFPbot=\skip63
+\rot@float@box=\box52
+\rot@mess@toks=\toks18
+)
+\draftskip=\count195
+\c@section=\count196
+\c@subsection=\count197
+\c@subsubsection=\count198
+\c@paragraph=\count199
+\c@subparagraph=\count266
+\c@figure=\count267
+\c@table=\count268
+\abovecaptionskip=\skip64
+\belowcaptionskip=\skip65
+\c@appendnum=\count269
+\bibindent=\dimen147
+
+(d:/texlive/2022/texmf-dist/tex/latex/apacite/apacite.sty
+Package: apacite 2013/07/21 v6.03 APA citation
+\c@BibCnt=\count270
+\bibleftmargin=\skip66
+\bibindent=\skip67
+\bibparsep=\skip68
+\bibitemsep=\skip69
+\biblabelsep=\skip70
+)) (./trackchanges.sty
+Package: trackchanges 2009/04/22 v0.7.0 TrackChanges file 
+(d:/texlive/2022/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count271
+\calc@Bcount=\count272
+\calc@Adimen=\dimen148
+\calc@Bdimen=\dimen149
+\calc@Askip=\skip71
+\calc@Bskip=\skip72
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count273
+\calc@Cskip=\skip73
+)
+(d:/texlive/2022/texmf-dist/tex/generic/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks19
+\SOUL@lasttoken=\toks20
+\SOUL@cmds=\toks21
+\SOUL@buffer=\toks22
+\SOUL@token=\toks23
+\SOUL@spaceskip=\skip74
+\SOUL@ttwidth=\dimen150
+\SOUL@uldp=\dimen151
+\SOUL@ulht=\dimen152
+)
+(d:/texlive/2022/texmf-dist/tex/latex/morefloats/morefloats.sty
+Package: morefloats 2015/07/22 v1.0h Raise limit of unprocessed floats (HMM)
+
+(d:/texlive/2022/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(d:/texlive/2022/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(d:/texlive/2022/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))
+Package morefloats Info: Maximum number of possible floats asked for: 36
+(morefloats)             (i.e. 18 more floats).
+(morefloats)             LaTeX might run out of memory before this
+(morefloats)             (in which case it will notify you).
+)
+\c@userid=\count274
+\c@changenumber=\count275
+\c@storefootnote=\count276
+\c@numeditors=\count277
+\c@maxeditors=\count278
+)
+(d:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count279
+\l__pdf_internal_box=\box53
+)
+No file SpaceWeather.aux.
+\openout1 = `SpaceWeather.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+(d:/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count280
+\scratchdimen=\dimen153
+\scratchbox=\box54
+\nofMPsegments=\count281
+\nofMParguments=\count282
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count283
+\MPscratchDim=\dimen154
+\MPnumerator=\count284
+\makeMPintoPDFobject=\count285
+\everyMPtoPDFconversion=\toks25
+) (d:/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(d:/texlive/2022/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(d:/texlive/2022/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+
+(d:/texlive/2022/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+))
+(d:/texlive/2022/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(d:/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+
+(d:/texlive/2022/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\c@maskedRefs=\count286
+
+(d:/texlive/2022/texmf-dist/tex/latex/apacite/english.apc
+File: english.apc 2013/07/21 v6.03 apacite language file
+LaTeX Info: Redefining \BPBI on input line 129.
+LaTeX Info: Redefining \BHBI on input line 130.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 110.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 110.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 110.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 138.
+ [1{d:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 169.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 169.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 262.
+
+Overfull \hbox (8.83513pt too wide) in paragraph at lines 364--365
+[]\OT1/cmr/m/n/10 AGU re-quires an Avail-abil-ity State-ment for the un-der-ly-
+ing data needed to un-der- 
+ []
+
+
+Overfull \hbox (21.51572pt too wide) in paragraph at lines 364--365
+\OT1/cmr/m/n/10 stand, eval-u-ate, and build upon the re-ported re-search at th
+e time of peer re-view and pub- 
+ []
+
+
+Overfull \hbox (5.8768pt too wide) in paragraph at lines 366--367
+[]\OT1/cmr/m/n/10 Authors should in-clude an Avail-abil-ity State-ment for the 
+soft-ware that has a sig- 
+ []
+
+
+Overfull \hbox (12.46016pt too wide) in paragraph at lines 366--367
+\OT1/cmr/m/n/10 nif-i-cant im-pact on the re-search. De-tails and tem-plates ar
+e in the Avail-abil-ity State-ment 
+ []
+
+
+Overfull \hbox (17.83366pt too wide) in paragraph at lines 366--367
+\OT1/cmr/m/n/10 sec-tion of the Data and Soft-ware for Au-thors Guid-ance: $\OT
+1/cmtt/m/n/10 https :// www [] .agu [] .org / Publish [] 
+ []
+
+
+Overfull \hbox (30.76149pt too wide) in paragraph at lines 366--367
+\OT1/cmtt/m/n/10 -with [] -AGU / Publish / Author [] -Resources / Data [] -and 
+[] -Software [] -for [] -Authors # availability$  
+ []
+
+
+Overfull \hbox (14.48792pt too wide) in paragraph at lines 368--369
+[]\OT1/cmr/m/n/10 It is im-por-tant to cite in-di-vid-ual datasets in this sec-
+tion and, and they must be in- 
+ []
+
+
+Overfull \hbox (3.57126pt too wide) in paragraph at lines 368--369
+\OT1/cmr/m/n/10 cluded in your bib-li-og-ra-phy. Please use the type field in y
+our bib-tex file to spec-ify the 
+ []
+
+
+Overfull \hbox (2.34909pt too wide) in paragraph at lines 368--369
+\OT1/cmr/m/n/10 type of data cited. Some op-tions in-clude Dataset, Soft-ware, 
+Col-lec-tion, Com-pu-ta-tion- 
+ []
+
+
+Overfull \hbox (10.45999pt too wide) in paragraph at lines 384--387
+[]\OT1/cmr/m/n/10 For phys-i-cal sam-ples, use the IGSN per-sis-tent iden-ti-fi
+er, see the In-ter-na-tional Geo 
+ []
+
+
+Overfull \hbox (9.124pt too wide) in paragraph at lines 384--387
+\OT1/cmr/m/n/10 Sam-ple Num-bers sec-tion: $\OT1/cmtt/m/n/10 https :// www [] .
+agu [] .org / Publish [] -with [] -AGU / Publish / Author [] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
+Overfull \hbox (24.65457pt too wide) in paragraph at lines 388--390
+\OT1/cmr/m/n/10 This sec-tion is op-tional. In-clude any Ac-knowl-edg-ments her
+e. The ac-knowl-edg-ments should 
+ []
+
+
+Overfull \hbox (3.21019pt too wide) in paragraph at lines 393--393
+\OT1/cmr/m/n/10 Other af-fil-i-a-tions for any au-thor that may be per-ceived a
+s hav-ing a con-flict of in-ter-est 
+ []
+
+
+Overfull \hbox (2.83511pt too wide) in paragraph at lines 394--395
+\OT1/cmr/m/n/10 It is also the ap-pro-pri-ate place to thank col-leagues and ot
+her con-trib-u-tors. AGU does 
+ []
+
+[3] (./SpaceWeather.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.45pt have occurred.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4237 strings out of 476093
+ 67060 string characters out of 5795577
+ 1861787 words of memory out of 5000000
+ 24558 multiletter control sequences out of 15000+600000
+ 518144 words of font info for 52 fonts, out of 8000000 for 9000
+ 1147 hyphenation exceptions out of 8191
+ 70i,10n,76p,381b,318s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/tex
+live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/2022
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><d:/texlive/2022/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2022/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi6.pfb><d:/texlive/2022/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.p
+fb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/texl
+ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/texlive/2022/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/texlive/2022/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy5.pfb><d:/texlive/2022/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmti9.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmtt10.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmtt9.pfb>
+Output written on SpaceWeather.pdf (3 pages, 174356 bytes).
+PDF statistics:
+ 89 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

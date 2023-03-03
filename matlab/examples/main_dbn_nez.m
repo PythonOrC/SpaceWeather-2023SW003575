@@ -188,9 +188,9 @@ for t = 1: length(OBS.data{1})
     for i = 1:length(LOC{1,t})
         if ~isempty(LOC{1,t}{i})
             if i/2 ~= floor(i/2)
-                c = [0 0 0];
+                c = [1 0 1];
             else
-                c = [1 1 1];
+                c = [1 0 1];
             end
             mapshow(LOC{1,t}{i},'Marker','d',...
             'MarkerFaceColor',c,'MarkerEdgeColor','k');
@@ -208,11 +208,19 @@ for t = 1: length(OBS.data{1})
         date_label =  '20031030 minute ';
         minute_time = t+TIME-1-1440;
     end
-    formatSpec = '%.2f';
-    str_title=[replace(DATA, "_"," "),' ',date_label,num2str(minute_time),'    ','(By, Bz): (', num2str(By(t),formatSpec),', ',num2str(Bz(t),formatSpec),')'];
+    hour = num2str(fix(minute_time/60));
+    if strlength(hour) == 1
+        hour = ['0' hour];
+    end
+
+    minute = num2str(mod(minute_time, 60));
+    if strlength(minute) == 1
+        minute = ['0' minute];
+    end
+    str_title=['Global Map of Magnetic Field Variation North Component dBn at UTC ' hour ':' minute];
     title(str_title);
     annotation('textbox',...
-        [0.84 0.76 0.077 0.052],... % * position of the text box
+        [0.87 0.905 0.077 0.052],... % * position of the text box
         'String',{'nT'},...
         'FontSize',12,...
         'FontName','Arial',...
