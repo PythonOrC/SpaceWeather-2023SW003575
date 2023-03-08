@@ -1,7 +1,7 @@
-SEG = "0509";
+SEG = "1724";
 PRENOON = false;
 ZONE = "upper north";
-Xcorr = 99;
+Xcorr = 2;
 LINE = "MAGLON";
 SPACING = 0;
 OFFSET = 0;
@@ -104,7 +104,7 @@ elseif SEG == "1724"
             elseif Xcorr == 1
                 STATIONS = ["FSP" "YKC" "CNL" "FMC" "RAL" "GIM" "ISL" "FCC" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
             elseif Xcorr == 2
-                STATIONS = ["KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW"];
+                STATIONS = ["NOK"];
             elseif Xcorr == 99
                 STATIONS = ["PBQ" "IQA" "SVS" "STF" "AMK" "SCO" "JAN" "BJN" "LYR" "NOK" "TIK" "KTN" "CHD" "BRW" "KAV" "ARC" "FSP" "CNL" "BLC" "RAN"];
             end
