@@ -16,7 +16,141 @@ else
     raw = readtable("HalloweenStorm-SuperMAG-1724.csv", "Delimiter",",", "DatetimeType","datetime");
     raw_ACE = readtable("ACE_1724_interp.csv");
 end
+if SEG == "0509"
+    INTERVAL = 50:150;
+    if LINE == "MAGLAT"
+        if PRENOON == true
+            if Xcorr == 0
+                STATIONS =["MAW" "CZT" "HBK" "LMM" "MLT" "ELT" "QSB" "ISK" "SUA" "LVV" "BEL" "HLP" "TAR" "LOV" "UPS" "NUR" "HAN" "OUJ" "PEL" "SOD" "KIR" "MUO" "IVA" "ABK" "KIL" "MAS" "AND" "TRO" "SOR" "BJN" "HOR" "HRN" "ALE"];
+            elseif Xcorr == 1
+                STATIONS =["SOR" "BJN" "HOR" "HRN"];
+            elseif Xcorr == 2
+                STATIONS =["HAN" "OUJ" "PEL" "SOD" "KIR" "MUO" "IVA" "ABK" "KIL" "MAS" "AND"];
+            elseif Xcorr == 3
+                STATIONS =["HBK" "LMM" "MLT" "ELT" "QSB" "ISK" "SUA" "LVV" "BEL" "HLP" "TAR" "LOV" "UPS"];
+            elseif Xcorr == 4
+                STATIONS =["BJN" "HOR" "HRN" "ALE"];
+            end
+        elseif PRENOON == false
+            if Xcorr == 0
+                STATIONS = ["DRV" "LEM" "ASP" "CTA" "KDU" "WEP" "WEW" "GUA" "CBI" "KNY" "KAG" "HTY" "KAK" "ONW" "PPI" "RIK" "MMB" "MSR" "MGD" "CHD" "TIK" "KTN"]; 
+            elseif Xcorr == 1
+                STATIONS = ["CHD" "TIK" "KTN"];  
+            elseif Xcorr == 2
+                STATIONS = ["LEM" "ASP" "CTA" "KDU" "WEP" "WEW" "GUA" "CBI" "KNY" "KAG" "HTY" "KAK" "ONW" "PPI" "RIK" "MMB" "MSR" "MGD"]; 
+            elseif Xcorr == 3
+                STATIONS = ["GUA" "HTY" "ONW" "MMB"];
+            end
+        end
+    elseif LINE == "MAGLON"
+        if ZONE == "upper north"
+            if Xcorr == 0
+                STATIONS =["TIK" "KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW" "FSP" "YKC" "CNL" "SMI" "FMC" "GIM" "ISL" "FCC" "RAN" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
+            elseif Xcorr == 1
+                STATIONS = ["SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK" "TIK" "KTN" "CHD" "BRW"];
+            elseif Xcorr == 2
+                STATIONS = ["BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW" "FSP" "YKC" "CNL" "SMI" "FMC" "GIM" "ISL" "FCC" "RAN" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV"];
+            elseif Xcorr == 99
+                STATIONS = ["PBQ" "IQA" "SVS" "STF" "AMK" "SCO" "JAN" "BJN" "LYR" "NOK" "TIK" "KTN" "CHD" "BRW" "KAV" "ARC" "FSP" "CNL" "BLC" "RAN"];
+            end
+        elseif ZONE == "lower north"
+            if Xcorr == 99
+                STATIONS = ["FRD" "STJ" "CLF" "FUR" "LVV" "NVS" "IRT" "BMT" "PPI" "MSR" "PET" "VIC" "FRN" "TUC" "BOU" "DLR" "BSL"];
+            end
+        elseif ZONE == "equator"
+            if Xcorr == 0
+                STATIONS = ["KDU" "WEP" "CTA" "API" "PPT" "VLD" "OSO" "SER" "CER" "PAC" "TRW" "VSS" "ASC" "TAN"]; 
+            elseif Xcorr == 1
+                STATIONS = ["KDU" "WEP" "CTA" "API" "PPT" "VLD" "OSO" "SER" "CER" "PAC" "TRW" "VSS" "ASC" "TAN"];  
+            elseif Xcorr == 4
+                STATIONS = ["KDU" "WEP" "CTA" "API" "PPT" ];  
+            elseif Xcorr == 99
+                STATIONS = ["HUA" "VRE" "KOU" "MBO" "TAM" "BNG" "MLT" "AAE" "ABG" "PHU" "TND" "GUA" "API" "HON" "PPT"];
+            end
+        elseif ZONE == "south"
+            if Xcorr == 0
+                STATIONS = ["DRV" "MCQ" "MCM" "SBA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"]; 
+            elseif Xcorr == 1
+                STATIONS = ["DRV" "MCQ" "MCM" "SBA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"];  
+            elseif Xcorr == 4
+                STATIONS = ["MCM" "SBA"];  
+            elseif Xcorr == 5
+                STATIONS = ["B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04"];  
+            elseif Xcorr == 99
+                STATIONS = ["B03" "B23" "B14" "B15" "B04" "MAW" "CZT" "PAF" "AMS" "CSY" "KAT" "LEM" "DRV" "MCQ" "EYR" "MCM" "SBA"];
+            end
+        end
+    end
+elseif SEG == "1724"
+    INTERVAL = 1:250; % or 50:150 for 0509
+    if LINE == "MAGLAT"
+        if PRENOON == true
+            if Xcorr == 0
+                STATIONS =["DRV" "ASP" "CTA" "KDU" "WEP" "WEW" "GUA" "CBI" "KNY" "KAG" "HTY" "KAK" "ONW" "PPI" "MMB" "MSR" "MGD" "CHD" "KTN"];
+            elseif Xcorr == 1
+                STATIONS = ["CHD" "KTN"];
+            elseif Xcorr == 2
+                STATIONS =["ASP" "CTA" "KDU" "WEP" "WEW" "GUA" "CBI" "KNY" "KAG" "HTY" "KAK" "ONW" "PPI" "MMB" "MSR"];
+            elseif Xcorr == 4
+                STATIONS =["ASP" "CTA" "KDU" "WEP" "WEW" "GUA" "CBI" "KNY" "KAG" "HTY" "KAK" "ONW" "PPI" "MMB" "MSR" "MGD"];
+            end
+        elseif PRENOON == false
+            if Xcorr == 0
+                STATIONS = ["MAW" "CZT" "HBK" "BNG" "AAE" "MLT" "ELT" "QSB" "ISK" "SUA" "LVV" "BEL" "HLP" "TAR" "LOV" "UPS" "NUR" "HAN" "OUJ" "PEL" "SOD" "KIR" "MUO" "IVA" "ABK" "KIL" "MAS" "KEV" "AND" "TRO" "SOR" "BJN" "HRN" "HOR" "LYR" "NAL" "DMH" "NRD" "ALE"]; 
+            elseif Xcorr == 1
+                STATIONS = ["PEL" "SOD" "KIR" "MUO" "IVA" "ABK" "KIL" "MAS" "KEV" "AND" "TRO" "SOR" "BJN" "HRN" "HOR" "LYR" "NAL" "DMH" "NRD" "ALE"];  
+            elseif Xcorr == 2
+                STATIONS = ["CZT" "HLP" "LOV" "UPS" "NUR" "HAN" "OUJ"]; 
+            elseif Xcorr == 3
+                STATIONS = ["HBK" "BNG" "AAE" "MLT" "ELT" "QSB" "ISK" "SUA" "LVV" "BEL"];  
+            end
+        end
+    elseif LINE == "MAGLON"
+        if ZONE == "upper north"
+            if Xcorr == 0
+                STATIONS =["KTN" "CHD" "BRW" "BET" "KAV" "ARC" "CMO" "PKR" "FYU" "GAK" "EAG" "DAW" "FSP" "YKC" "CNL" "FMC" "RAL" "GIM" "ISL" "FCC" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
+            elseif Xcorr == 1
+                STATIONS = ["FSP" "YKC" "CNL" "FMC" "RAL" "GIM" "ISL" "FCC" "PBQ" "IQA" "SKT" "FHB" "STF" "NAQ" "AMK" "LRV" "SCO" "JAN" "AND" "ABK" "KIR" "TRO" "KIL" "PEL" "MUO" "SOR" "MAS" "SOD" "BJN" "IVA" "KEV" "NOK"];
+            elseif Xcorr == 2
+                STATIONS = ["NOK"];
+            elseif Xcorr == 99
+                STATIONS = ["PBQ" "IQA" "SVS" "STF" "AMK" "SCO" "JAN" "BJN" "LYR" "NOK" "TIK" "KTN" "CHD" "BRW" "KAV" "ARC" "FSP" "CNL" "BLC" "RAN"];
+            end
+        elseif ZONE == "lower north"
+            if Xcorr == 99
+                STATIONS = ["FRD" "STJ" "CLF" "FUR" "LVV" "NVS" "IRT" "BMT" "PPI" "MSR" "PET" "VIC" "FRN" "TUC" "BOU" "DLR"];
+            end    
+        elseif ZONE == "equator"
+            if Xcorr == 0
+                STATIONS = ["GZH" "BMT" "KAG" "KNY" "HTY" "KAK" "ONW" "CBI" "EWA" "HON" "SJG" "SPT" "EBR" "MLT" "ELT" "QSB" "LZH" "PHU"]; 
+            elseif Xcorr == 1
+                STATIONS = ["GZH" "BMT" "KAG" "KNY" "HTY" "KAK" "ONW" "CBI" "EWA" "HON" "SJG" "SPT" "EBR" "MLT" "ELT" "QSB" "LZH" "PHU"];  
+            elseif Xcorr == 99
+                STATIONS = ["HUA" "VRE" "KOU" "MBO" "TAM" "BNG" "MLT" "AAE" "ABG" "PHU" "TND" "GUA" "API" "HON" "PPT"];
+            end
+        elseif ZONE == "south"
+            if Xcorr == 0
+                STATIONS = ["DRV" "MCQ" "MCM" "SBA" "SPA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"]; 
+            elseif Xcorr == 1
+                STATIONS = ["DRV" "MCM" "SBA" "SPA" "B23" "B18" "B14" "B21" "B12" "B19" "B20" "B11" "B17" "B22" "B15" "B04" "MAW" "CSY"];  
+            elseif Xcorr == 99
+                STATIONS = ["B03" "B23" "B14" "B15" "B04" "MAW" "CZT" "PAF" "AMS" "CSY" "LRM" "LEM" "DRV" "MCQ" "EYR" "MCM" "SBA"];
+            end
+        end
+    end
+end
 
+
+DATA = 'dbn_nez';
+
+% import the raw unprocessed data
+if SEG == "0509"
+    raw = readtable("HalloweenStorm-SuperMAG-0509.csv", "Delimiter",",", "DatetimeType","datetime");
+    raw_ACE = readtable("ACE_0509_interp.csv");
+else
+    raw = readtable("HalloweenStorm-SuperMAG-1724.csv", "Delimiter",",", "DatetimeType","datetime");
+    raw_ACE = readtable("ACE_1724_interp.csv");
+end
 INTERVAL = TIME:TIME+DURATION-1;
 
 % get the stations from the raw data
@@ -174,6 +308,7 @@ for t = 1: length(OBS.data{1})
     % 'MarkerFaceColor','b','MarkerEdgeColor','k');
     % display the stations
     for i = 1:length(LOC{2,t})
+        if 
         if ~isempty(LOC{2,t}{i})
             if i/2 ~= floor(i/2)
                 c = [0 0 0];

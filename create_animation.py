@@ -8,4 +8,4 @@ def make_gif(frame_folder):
 
 if __name__ == "__main__":
     # make_gif("D:\Github Repository\SpaceWeather\matlab\examples\draftFigure\\1724")
-    make_gif("D:\Github Repository\SpaceWeather\matlab\examples\draftFigure\\0509_new")
+    make_gif("D:\Github Repository\SpaceWeather\matlab\examples\draftFigure\\1724_new")
