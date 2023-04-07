@@ -16,3 +16,9 @@ plot(1:length(ACE.Bz),ACE.Bz);
 legend(["Bx" "By" "Bz"]);
 xticks([0 120 240 360 480 600 720 840 960 1080 1200 1320 1440]);
 xticklabels([0,2,4,6,8,10,12,14,16,18,20,22,24]);
+
+x0=10;
+y0=10;
+width=600;
+height=400;
+set(gcf,'position',[x0,y0,width,height]);
