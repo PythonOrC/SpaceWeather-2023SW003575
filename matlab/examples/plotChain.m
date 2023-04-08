@@ -29,32 +29,6 @@ long = raw.GEOLON(1:length(Stations), 1);
 By = raw_ACE.By;
 Bz = raw_ACE.Bz;
 
-% clear LOC;
-% LOC={};
-
-% for i = 1:length(raw.MLT)/length(Stations)
-%     loc_n = [];
-%     loc_m = [];
-%     n = 0;
-%     m = 0;
-
-%     for j = 1:length(Stations)
-%         mlt = mlt_all((i-1)*length(Stations)+j);
-%         if mlt <= 12+MLT_MARGIN && mlt >= 12-MLT_MARGIN
-%             m = m + 1;
-%             loc_m(m).Geometry = 'Point';
-%             loc_m(m).Lat = lat(j);
-%             loc_m(m).Lon = long(j);
-%         else
-%             n = n + 1;
-%             loc_n(n).Geometry = 'Point';
-%             loc_n(n).Lat = lat(j);
-%             loc_n(n).Lon = long(j);
-%         end
-%     end
-%     LOC{1,i} = loc_n;
-%     LOC{2,i} = loc_m;
-% end
 
 clear LOC;
 % lat + long of stattions MLT != 12

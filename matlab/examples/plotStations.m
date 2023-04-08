@@ -1,7 +1,7 @@
 SEG = "1724";
-PRENOON = false;
+PRENOON = true;
 ZONE = "upper north";
-Xcorr = 2;
+Xcorr = 99;
 LINE = "MAGLON";
 SPACING = 0;
 OFFSET = 0;
