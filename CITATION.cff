@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "YOUR_NAME_HERE"
-  given-names: "YOUR_NAME_HERE"
+- family-names: "Hu"
+  given-names: "Hongyi"
   orcid: "https://orcid.org/0009-0003-7240-0513"
 title: "Investigating the Space Weather Impact of the 2003 Halloween Geomagnetic Storm by the Ground Magnetic Field Variations: a Global View"
 version: 1.0.0
