@@ -1,5 +1,5 @@
 DATA = 'dbn_nez';
-SEG = 1;
+SEG = 2;
 MARGIN = 0;
 MLT_MARGIN = 1;
 MAGLAT_CHUNK_SIZE = 10;
@@ -13,8 +13,8 @@ if SEG == 1
 else
     TIME = 1044;
     DURATION = 420;
-    raw = readtable("HalloweenStorm-SuperMAG-1724.csv", "Delimiter",",", "DatetimeType","datetime");
-    raw_ACE = readtable("ACE_1724_interp.csv");
+    raw = readtable("..\\..\\data input\\HalloweenStorm-SuperMAG-Storm2.csv", "Delimiter",",", "DatetimeType","datetime");
+    raw_ACE = readtable("..\\..\\data output\\ACE_1724_interp.csv");
 end
 
 INTERVAL = TIME:TIME+DURATION-1;
@@ -148,11 +148,13 @@ clear max;
 
 min = min(min(dat));
 max = max(max(dat));
+max = 2286.80000000000;
+min = -3960.500000000000;
     %Use meshgrid to create a set of 2-D grid points in the longitude-latitude plane and then use griddata to interpolate the corresponding depth at those points:
 [longi,lati] = meshgrid(min_long:1:max_long, min_lat:1:max_lat); % * 0.5 is the resolution, longitude then latitude
 % graph the data
 s = shaperead('landareas.shp');
-for t = 60: length(OBS.data{1})
+for t = 306: length(OBS.data{1})
 % for t = 1:1
     disp(["Generating" t "..."]);
     dat_c = dat(t,:);
